@@ -1,7 +1,7 @@
 "use server";
 
 import Quote from "../model/quote_display.model"
-import { connectToDatabase } from "../mongooes";
+import { connectToDatabase } from "../mongoose";
 import { handleError } from "../utils";
 
 
