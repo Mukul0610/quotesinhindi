@@ -1,4 +1,5 @@
 'use client';
+import { Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import QuotesList from '@/components/QuoteList';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
@@ -25,7 +26,7 @@ export default function Home() {
             <h1 className="text-3xl font-bold text-center">हिंदी कोट्स संग्रह</h1>
           </div>
         </header> */}
-
+<Suspense fallback={<div>Loading...</div>}> 
         <main className="container mx-auto px-4 py-8">
           <div className="flex flex-col lg:flex-row gap-8 mr-6">
             {/* Main Content Area (2/3) */}
@@ -46,6 +47,7 @@ export default function Home() {
             </div>
           </div>
         </main>
+        </Suspense>
       </div>
     </>
   );
