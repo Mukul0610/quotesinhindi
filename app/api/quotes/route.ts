@@ -19,7 +19,7 @@ type Quote = {
 //   text: `हिंदी कोट ${i + 1}`,
 //   category: ['प्रेरणा', 'जीवन', 'प्यार', 'दोस्ती', 'सफलता'][Math.floor(Math.random() * 5)]
 // }));
-let mockQuotes = await getQuotes(); 
+const mockQuotes = await getQuotes(); 
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

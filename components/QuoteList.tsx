@@ -51,7 +51,7 @@ export default function QuotesList({ currentPage, category, onPageChange }: Quot
       
       <div className="grid gap-6 mt-6 ml-6">
         <h2 className='text-3xl font-serif font-bold'>
-      {category.charAt(0).toUpperCase() + category.slice(1)} Quote In Hindi
+      {category.charAt(0).toUpperCase() + category.slice(1)} Quotes In Hindi
       </h2>
         {quotes.map((quote) => (
           // <Card key={quote._Id} className="hover:shadow-lg transition-shadow">
