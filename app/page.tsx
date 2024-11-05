@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import QuotesList from '@/components/QuoteList';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
@@ -41,7 +40,7 @@ export default function Home() {
             {/* Sidebar (1/3) */}
             <div className="lg:w-1/3 ml-8">
               <CategoriesSidebar 
-                currentCategory={currentCategory}
+                
                 onCategoryChange={(category) => updateQueryParams(1, category)}
               />
             </div>

@@ -1,7 +1,7 @@
 'use client';
 // import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function CategoriesSidebar({ currentCategory, onCategoryChange }: { currentCategory: string; onCategoryChange: (id: string) => void }) {
+export default function CategoriesSidebar({ onCategoryChange }: { onCategoryChange: (id: string) => void }) {
   const categories = [
     { id: 'inspirational', name: 'प्रेरणादायक', count: "29.0K" },
     { id: 'life', name: 'जीवन', count: "36.0K" },

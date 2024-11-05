@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import Quote from "../model/quote_display.model"
 import { connectToDatabase } from "../mongooes";
 import { handleError } from "../utils";
