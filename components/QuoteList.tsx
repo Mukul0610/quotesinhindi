@@ -61,8 +61,8 @@ export default function QuotesList({ currentPage, category, onPageChange }: Quot
           //   </CardContent>
           // </Card>
           <div key={quote._id} className="flex">
-            <div className='flex w-full border-b-2 pb-10 border-[#c4a99b] gap-4'>
-            <blockquote className="flex-3 w-[75%] p-4">
+            <div className='md:flex w-full border-b-2 pb-10 border-[#c4a99b] gap-4'>
+            <blockquote className="flex-3 md:w-[75%] p-4">
               <p className="text-xl font-medium">{quote.hindi_quote}</p>
               <footer className="text-lg text-gray-500 mt-6">―{quote.author_hindi}</footer>
             </blockquote>

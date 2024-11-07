@@ -20,27 +20,27 @@ const Footer: React.FC = () => {
         <div className="flex flex-col justify-between items-center">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <div className="flex flex-1 justify-center items-center">
-              <div className="flex justify-between text-[#4b281e] w-[110%] gap-4">
-                <Link href="https://www.linkedin.com/in/mukul-rai-325953235/" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <button className="w-full flex items-center justify-center p-2 px-4  rounded-full  hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
+              <div className="grid grid-cols-2 lg:grid-cols-4  gap-4 text-[#4b281e] w-[110%]">
+                <Link href="https://www.linkedin.com/in/mukul-rai-325953235/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                  <button className="flex items-center justify-center p-2 px-4 rounded-full hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
                     <FontAwesomeIcon icon={faLinkedin} className="text-2xl mr-2" />
                     <span>LinkedIn</span>
                   </button>
                 </Link>
-                <Link href="https://www.facebook.com/profile.php?id=100081212280771" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <button className="w-full flex items-center justify-center p-2 px-4 rounded-full hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
+                <Link href="https://www.facebook.com/profile.php?id=100081212280771" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                  <button className="flex items-center justify-center p-2 px-4 rounded-full hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
                     <FontAwesomeIcon icon={faFacebook} className="text-2xl mr-2" />
                     <span>Facebook</span>
                   </button>
                 </Link>
-                <Link href="https://www.instagram.com/mukulrai1729/" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <button className="w-full flex items-center justify-center p-2 px-4  rounded-full  hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
+                <Link href="https://www.instagram.com/mukulrai1729/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                  <button className="flex items-center justify-center p-2 px-4 rounded-full hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
                     <FontAwesomeIcon icon={faInstagram} className="text-2xl mr-2" />
                     <span>Instagram</span>
                   </button>
                 </Link>
-                <Link href="https://x.com/mukul93028" target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <button className="w-full flex items-center justify-center p-2 px-4 rounded-full hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
+                <Link href="https://x.com/mukul93028" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                  <button className="flex items-center justify-center p-2 px-4 rounded-full hover:bg-[#4b281e] hover:text-white transition-colors duration-300">
                     <FontAwesomeIcon icon={faTwitter} className="text-2xl mr-2" />
                     <span>Twitter</span>
                   </button>
