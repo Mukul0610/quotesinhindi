@@ -11,7 +11,7 @@ export async function getShayari() {
   
       const pages = await Shayari.find({});
   
-      if (pages.length === 0) throw new Error("No pages");
+      if (pages.length === 0) throw new Error("No pages found");
   
       return JSON.parse(JSON.stringify(pages));
     } catch (error) {
