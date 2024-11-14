@@ -15,6 +15,9 @@ const quoteSchema=new Schema({
   },
   author_hindi: {
     type: String
+  },
+  likes: {
+    type: Number
   }
 });
 

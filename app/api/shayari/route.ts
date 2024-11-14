@@ -1,55 +1,58 @@
-import { getQuotes } from '@/lib/actions/quote_display.action';
+// import { getQuotes } from '@/lib/actions/quote_display.action';
+import { getShayari } from '@/lib/actions/shayari.action';
 import { NextResponse } from 'next/server';
 
 const QUOTES_PER_PAGE = 30;
 const CACHE_DURATION = 3600; // 1 hour in seconds
 
 // Updated Quote type with likes
-type Quote = {
+type Shayari = {
   _id: string;
-  quote: string;
+  quote: string[];
   author: string;
-  category: string[];
-  hindi_quote: string;
-  author_hindi: string;
+  category: string;
   likes: number;
 };
 
 // Cache storage
 let quotesCache: {
-  data: Quote[];
+  data: Shayari[];
   timestamp: number;
 } | null = null;
 
 // Helper function to get cached quotes
 async function getCachedQuotes() {
-  const currentTime = Date.now();
+    const currentTime = Date.now();
+    
+    if (quotesCache && (currentTime - quotesCache.timestamp) / 1000 < CACHE_DURATION) {
+      return quotesCache.data;
+    }
   
-  if (quotesCache && (currentTime - quotesCache.timestamp) / 1000 < CACHE_DURATION) {
-    return quotesCache.data;
+    try {
+      const freshQuotes = await getShayari();
+      
+      // Sort quotes by likes in descending order when updating cache
+      const sortedQuotes = freshQuotes.sort((a:any, b:any) => (b.likes || 0) - (a.likes || 0));
+      
+      quotesCache = {
+        data: sortedQuotes,
+        timestamp: currentTime
+      };
+      
+      return sortedQuotes;
+    } catch (error) {
+      console.error('Error fetching fresh quotes:', error);
+      throw error;
+    }
   }
-
-  const freshQuotes = await getQuotes();
-  
-  // Sort quotes by likes in descending order when updating cache
-  const sortedQuotes = freshQuotes.sort((a:any, b:any) => (b.likes || 0) - (a.likes || 0));
-  
-  quotesCache = {
-    data: sortedQuotes,
-    timestamp: currentTime
-  };
-  
-  return sortedQuotes;
-}
-
 // Helper function to filter, sort, and paginate quotes
 function filterAndPaginateQuotes(
-  quotes: Quote[],
+  quotes: Shayari[],
   category: string,
   page: number,
   sortBy: 'likes' | null = 'likes'
 ): { 
-  paginatedQuotes: Quote[],
+  paginatedQuotes: Shayari[],
   totalQuotes: number 
 } {
   // First filter by category

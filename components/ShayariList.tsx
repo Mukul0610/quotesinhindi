@@ -10,16 +10,14 @@ interface QuotesListProps {
 }
 
 interface Quote {
-  _id: string
-  quote: string;          // Corresponds to the quote property in the model
+  _id:string
+  quote: string[];          // Corresponds to the quote property in the model
   author: string;        // Corresponds to the author property in the model
-  category: string[];    // Corresponds to the category property in the model (array of strings)
-  hindi_quote: string;   // Corresponds to the hindi_quote property in the model
-  author_hindi: string;
+  category: string;    // Corresponds to the category property in the model (array of strings)
   likes: number;
 }
 
-export default function QuotesList({ currentPage, category, onPageChange }: QuotesListProps) {
+export default function ShayariList({ currentPage, category, onPageChange }: QuotesListProps) {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
@@ -29,9 +27,9 @@ export default function QuotesList({ currentPage, category, onPageChange }: Quot
     const fetchQuotes = async () => {
       setLoading(true);
       try {
-        // Extract the first word of the category
+         // Extract the first word of the category
         const response = await fetch(
-          `/api/quotes?page=${currentPage}&category=${firstWordCategory}`
+          `/api/shayari?page=${currentPage}&category=${firstWordCategory}`
         );
         const data = await response.json();
         setQuotes(data.quotes);
@@ -51,11 +49,11 @@ export default function QuotesList({ currentPage, category, onPageChange }: Quot
 
   return (
     <div>
-
+      
       <div className="grid gap-6 mt-6 ml-6">
         <h2 className='text-3xl font-serif font-bold'>
-          {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Quotes In Hindi
-        </h2>
+      {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Quotes In Hindi
+      </h2>
         {quotes.map((quote) => (
           // <Card key={quote._Id} className="hover:shadow-lg transition-shadow">
           //   <CardContent className="p-4">
@@ -65,20 +63,22 @@ export default function QuotesList({ currentPage, category, onPageChange }: Quot
           // </Card>
           <div key={quote._id} className="flex">
             <div className='md:flex w-full border-b-2 pb-10 border-[#c4a99b] gap-4'>
-              <blockquote className="flex-3 md:w-[75%] p-4">
-                <p className="text-xl font-medium">{quote.hindi_quote}</p>
-                <footer className="text-lg text-gray-500 mt-6">―{quote.author_hindi}</footer>
-              </blockquote>
-              <div className="flex-1 flex items-center justify-center">
-                <button
-                  onClick={() => navigator.clipboard.writeText(quote.hindi_quote)}
-                  className="bg-[#4b281e] hover:bg-[#2c221f] text-white font-bold py-2 px-4 rounded"
-                >
-                  कॉपी करें
-                </button>
-
-              </div>
+            <blockquote className="flex-3 md:w-[75%] p-4">
+              {quote.quote.map((item, index) => (
+                <p key={index} className="text-xl font-medium">{item}</p>
+              ))}
+              <footer className="text-lg text-gray-500 mt-6">―{quote.author}</footer>
+            </blockquote>
+            <div className="flex-1 flex items-center justify-center">
+              <button
+                onClick={() => navigator.clipboard.writeText(quote.quote.join(' '))}
+                className="bg-[#4b281e] hover:bg-[#2c221f] text-white font-bold py-2 px-4 rounded"
+              >
+                कॉपी करें
+              </button>
+              
             </div>
+          </div>
           </div>
         ))}
       </div>
@@ -91,13 +91,13 @@ export default function QuotesList({ currentPage, category, onPageChange }: Quot
         >
           पिछला
         </button>
-
+        
         <span className="flex items-center px-4">
           पृष्ठ {currentPage} / {totalPages}
         </span>
-
+        
         <button
-
+          
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
