@@ -1,12 +1,12 @@
 'use client';
-import HomeContent from '@/components/HomeContent'
+// import HomeContent from '@/components/HomeContent'
 import React from 'react'
 import { useSearchParams, useRouter } from 'next/navigation';
 // import QuotesList from '@/components/QuoteList';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
 import ShayariList from '@/components/ShayariList';
 
-const page = () => {
+const Page = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentPage = Number(searchParams.get('page')) || 1;
@@ -42,7 +42,7 @@ const page = () => {
   );
 }
 
-export default page
+export default Page
 
 
 

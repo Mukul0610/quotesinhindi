@@ -7,7 +7,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 // import ShayariList from '@/components/ShayariList';
 import SocialMedia from '@/components/SocialMedia';
 
-const page = () => {
+const Page = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentPage = Number(searchParams.get('page')) || 1;
@@ -37,5 +37,5 @@ const page = () => {
   );
 }
 
-export default page
+export default Page
 

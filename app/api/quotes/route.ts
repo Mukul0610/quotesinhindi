@@ -32,7 +32,7 @@ async function getCachedQuotes() {
   const freshQuotes = await getQuotes();
   
   // Sort quotes by likes in descending order when updating cache
-  const sortedQuotes = freshQuotes.sort((a:any, b:any) => (b.likes || 0) - (a.likes || 0));
+  const sortedQuotes = freshQuotes.sort((a:Quote, b:Quote) => (b.likes || 0) - (a.likes || 0));
   
   quotesCache = {
     data: sortedQuotes,
@@ -119,23 +119,23 @@ export async function GET(request: Request) {
 }
 
 // Optional: Add an API endpoint to update likes
-export async function PATCH(request: Request) {
-  try {
-    const body = await request.json();
-    const { quoteId, likes } = body;
+// export async function PATCH(request: Request) {
+//   try {
+//     const body = await request.json();
+//     const { quoteId, likes } = body;
 
-    // Update likes in your database here
-    // await updateQuoteLikes(quoteId, likes);
+//     // Update likes in your database here
+//     // await updateQuoteLikes(quoteId, likes);
 
-    // Invalidate cache to fetch fresh data on next request
-    quotesCache = null;
+//     // Invalidate cache to fetch fresh data on next request
+//     quotesCache = null;
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Error updating likes:', error);
-    return NextResponse.json(
-      { error: 'Failed to update likes' },
-      { status: 500 }
-    );
-  }
-}
+//     return NextResponse.json({ success: true });
+//   } catch (error) {
+//     console.error('Error updating likes:', error);
+//     return NextResponse.json(
+//       { error: 'Failed to update likes' },
+//       { status: 500 }
+//     );
+//   }
+// }
