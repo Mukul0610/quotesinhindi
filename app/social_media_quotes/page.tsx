@@ -7,6 +7,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 // import CategoriesSidebar from '@/components/CategoriesSidebar';
 // import ShayariList from '@/components/ShayariList';
 import SocialMedia from '@/components/SocialMedia';
+import SocalMediaContent from '@/components/SocialMediaContent';
 
 const Page = () => {
   const searchParams = useSearchParams();
@@ -22,21 +23,11 @@ const Page = () => {
   };
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="flex flex-col lg:flex-row gap-8 mr-6">
-        {/* Main Content Area (2/3) */}
-        <Suspense fallback={<div>Loading...</div>}>
-        <div className="lg:w-2/3">
-          <SocialMedia
-            currentPage={currentPage}
-            category={currentCategory}
-            onPageChange={(page) => updateQueryParams(page, currentCategory)}
-          />
-        </div>
-        </Suspense>
-        
-      </div>
-    </main>
+    <>
+     <Suspense fallback={<div>Loading...</div>}>
+        <SocalMediaContent />
+      </Suspense>
+    </>
   );
 }
 
