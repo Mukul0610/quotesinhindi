@@ -4,17 +4,16 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import QuotesList from '@/components/QuoteList';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
 
-export default function HomeContent() {
+export default function HomeContent( { para }: { para: string }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentPage = Number(searchParams.get('page')) || 1;
-  const currentCategory = searchParams.get('category') || 'all';
+  const currentCategory = para;
 
   const updateQueryParams = (page: number, category: string) => {
     const params = new URLSearchParams();
     params.set('page', page.toString());
-    if (category !== 'all') params.set('category', category);
-    router.push(`/?${params.toString()}`);
+    router.push(`/${category}/?${params.toString()}`);
   };
 
   return (

@@ -23,8 +23,9 @@ export default function QuotesList({ currentPage, category, onPageChange }: Quot
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
-  const firstWordCategory = category.split('-')[0];
-
+  const firstWordCategory = typeof category === 'string' ? category.split('-')[0] : '';
+  console.log(firstWordCategory)
+  console.log("mukul")
   useEffect(() => {
     const fetchQuotes = async () => {
       setLoading(true);

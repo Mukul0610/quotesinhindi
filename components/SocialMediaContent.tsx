@@ -15,7 +15,7 @@ export default function SocalMediaContent() {
       const params = new URLSearchParams();
       params.set('page', page.toString());
       if (category !== 'all') params.set('category', category);
-      router.push(`/shayari/?${params.toString()}`);
+      router.push(`/social_media_quotes/?${params.toString()}`);
     };
   
     return (

@@ -10,11 +10,11 @@ const Navbar = () => {
         </Link></div>
         <div>
         <nav className="flex items-center gap-4">
-          <input
+          {/* <input
             type="text"
             placeholder="Search..."
             className="border-gray-200 font-medium md:flex hidden rounded-md p-1"
-          />
+          /> */}
           <Link className="hover:bg-[#4b281e] hover:text-gray-50 h-14 content-center px-3" href="/">
             Home
           </Link>
@@ -22,7 +22,7 @@ const Navbar = () => {
             Shayari
           </Link>
           <Link className="hover:bg-[#4b281e] hover:text-gray-50 h-14 content-center px-3" href="/social_media_quotes">
-            Social Media Quote
+            2-Lines-Quote
           </Link>
           <Link className="hover:bg-[#4b281e] hover:text-gray-50 h-14 content-center px-3" href="#">
             Blogs
