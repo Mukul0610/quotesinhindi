@@ -1,14 +1,11 @@
 import React, { Suspense } from 'react';
 import HomeContent from '@/components/HomeContent';
 
-interface PageProps {
-  params: {
-    category: Promise<string>;
-  };
-}
 
-const Pages: React.FC<PageProps> = async ({ params }) => {
+const Pages = async ({ params }: { params: { category: string } }) => {
+  // Await the params to ensure they are resolved before accessing
   const currentCategory = await params.category || 'all';
+
 
   return (
     <>
