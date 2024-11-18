@@ -28,10 +28,10 @@ type PageProps = {
   params: {
     category?: string
   }
-  searchParams: { [key: string]: string | string[] | undefined }
+  
 }
 
-export default function Page({ params, searchParams }: PageProps) {
+export default function Page({ params }: PageProps) {
   const currentCategory = params.category || 'all'
 
   return <HomeContent para={currentCategory} />
