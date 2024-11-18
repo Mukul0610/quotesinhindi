@@ -1,11 +1,16 @@
 import React, { Suspense } from 'react';
 import HomeContent from '@/components/HomeContent';
 
+// Define the type for the params
+type Params = {
+  params: {
+    category?: string; // Optional category parameter
+  };
+};
 
-const Pages = async ({ params }: { params: { category: string } }) => {
+const Pages = ({ params }: Params) => {
   // Await the params to ensure they are resolved before accessing
-  const currentCategory = await params.category || 'all';
-
+  const currentCategory = params.category || 'all';
 
   return (
     <>
