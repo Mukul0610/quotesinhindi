@@ -1,22 +1,22 @@
-import React, { Suspense } from 'react'
-
+import React, { Suspense } from 'react';
 import HomeContent from '@/components/HomeContent';
 
-
-const Pages = async({params}: {params: any}) => {
-    // const campaign = await getCampaignById(params.sponsorship);
-
-//   const currentCategory = params.sponsorship;
-const currentCategory = await params.category || 'all';
-  
-    
-  return (
-    <>
-    <Suspense fallback={<div>Loading...</div>}>
-    <HomeContent para={currentCategory}/>
-    </Suspense>
-    </>
-  )
+interface PagesProps {
+  params: {
+    category?: string;
+  };
 }
 
-export default Pages
+const Pages: React.FC<PagesProps> = async ({ params }) => {
+  const currentCategory = params.category || 'all';
+
+  return (
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <HomeContent para={currentCategory} />
+      </Suspense>
+    </>
+  );
+};
+
+export default Pages;
