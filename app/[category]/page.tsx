@@ -3,7 +3,7 @@ import React, { Suspense } from 'react'
 import HomeContent from '@/components/HomeContent';
 
 
-const Pages = async({params}:any) => {
+const Pages = async({params}: {params: any}) => {
     // const campaign = await getCampaignById(params.sponsorship);
 
 //   const currentCategory = params.sponsorship;
