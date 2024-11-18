@@ -1,21 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import HomeContent from '@/components/HomeContent';
 
-
-const Pages = async ({ params }: { params: { category: string } }) => {
-  // Await the params to ensure they are resolved before accessing
-  const currentCategory =  params.category || 'all';
-
+export default async function Page({ 
+  params 
+}: { 
+  params: { category: string } 
+}) {
+  const currentCategory = params.category || 'all';
 
   return (
     <>
-      {/* <Suspense fallback={<div>Loading...</div>}> */}
+      <Suspense fallback={<div>Loading...</div>}>
         <HomeContent para={currentCategory} />
-      {/* </Suspense> */}
+      </Suspense>
     </>
   );
-};
-
-
-
-export default Pages;
+}
