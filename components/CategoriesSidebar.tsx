@@ -1,4 +1,7 @@
 'use client';
+
+import Link from "next/link";
+
 // import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function CategoriesSidebar({ onCategoryChange }: { onCategoryChange: (id: string) => void }) {
@@ -54,7 +57,8 @@ export default function CategoriesSidebar({ onCategoryChange }: { onCategoryChan
     
     <div className="grid grid-cols-2 gap-4 text-blue-800">
           {categories.map((category) => (
-            <div
+            <Link href={`/${category.id}`} key={category.id} onClick={() => onCategoryChange(category.id)} className="no-underline">
+            {/* <div
               key={category.id}
               onClick={() => onCategoryChange(category.id)}
               // className={`text-left px-4 py-2 rounded-lg transition-colors ${
@@ -63,15 +67,15 @@ export default function CategoriesSidebar({ onCategoryChange }: { onCategoryChan
               //     : 'hover:bg-gray-100'
               // }`}
               className="cursor-pointer"
-            >
+            > */}
               
                 <span>{category.name} ({category.english_name})</span>
                 <span className="text-sm bg-gray-100 px-2 py-1 rounded-full">
                   {category.count}
                 </span>
               
-            </div>
-          ))}
+            
+            </Link>))}
         </div>
         
   );
