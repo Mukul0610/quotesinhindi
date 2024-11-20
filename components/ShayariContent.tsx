@@ -9,16 +9,18 @@ import CategoriesSidebar from '@/components/CategoriesSidebar';
 import ShayariList from '@/components/ShayariList';
 
 
-export default function ShayariContent() {  const searchParams = useSearchParams();
+export default function ShayariContent({ para }: { para: string }) {  
+  const searchParams = useSearchParams();
   const router = useRouter();
   const currentPage = Number(searchParams.get('page')) || 1;
-  const currentCategory = searchParams.get('category') || 'all';
+  // const currentCategory = searchParams.get('category') || 'all';
+  const currentCategory = para;
 
   const updateQueryParams = (page: number, category: string) => {
     const params = new URLSearchParams();
     params.set('page', page.toString());
     if (category !== 'all') params.set('category', category);
-    router.push(`/shayari/?${params.toString()}`);
+    router.push(`/shayari/${category}/?${params.toString()}`);
   };
 
   return (

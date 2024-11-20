@@ -5,11 +5,12 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import SocialMedia from '@/components/SocialMedia';
 
 
-export default function SocalMediaContent() {
+export default function SocalMediaContent({ para }: { para: string }) {
     const searchParams = useSearchParams();
     const router = useRouter();
     const currentPage = Number(searchParams.get('page')) || 1;
-    const currentCategory = searchParams.get('category') || 'all';
+    // const currentCategory = searchParams.get('category') || 'all';
+    const currentCategory = para;
   
     const updateQueryParams = (page: number, category: string) => {
       const params = new URLSearchParams();

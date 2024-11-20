@@ -8,7 +8,7 @@ const Page = () => {
   return (
     <>
     <Suspense fallback={<div>Loading...</div>}>
-        <ShayariContent />
+        <ShayariContent para="all" />
       </Suspense>
     </>
   );

@@ -10,7 +10,7 @@ const Page = () => {
   return (
     <>
      <Suspense fallback={<div>Loading...</div>}>
-        <SocalMediaContent />
+        <SocalMediaContent para="all" />
       </Suspense>
     </>
   );

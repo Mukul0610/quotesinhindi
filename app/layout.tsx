@@ -16,9 +16,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Quotes in Hindi",
-  description: "Quotes In hindi",
-  keywords: "quotes in hindi,Love Quotes in Hindi",
+  title: "Quotes and Shayari in Hindi",
+  description: "Discover a treasure trove of heartfelt Hindi Shayari and Quotes on love, life, motivation,poetry,politics and philosophy. Daily updated collection featuring inspirational thoughts, good morning messages, sad shayari, and timeless wisdom in Hindi. Explore 10,000+ handpicked quotes across emotions, share with loved ones, and find words that touch your soul. Your daily destination for shayari in hindi and meaningful quotes. Visit now for fresh content daily!",
+  keywords: "quotes in hindi,Love Quotes in Hindi,shayari in hindi",
 };
 
 export default function RootLayout({
