@@ -4,9 +4,8 @@
 // import { Suspense } from 'react';
 import React from 'react'
 import { useSearchParams, useRouter } from 'next/navigation';
-// import QuotesList from '@/components/QuoteList';
-import CategoriesSidebar from '@/components/CategoriesSidebar';
 import ShayariList from '@/components/ShayariList';
+import ShayariSidebar from './ShayariSidebar';
 
 
 export default function ShayariContent({ para }: { para: string }) {  
@@ -37,7 +36,7 @@ export default function ShayariContent({ para }: { para: string }) {
         
         {/* Sidebar (1/3) */}
         <div className="lg:w-1/3 ml-8">
-          <CategoriesSidebar 
+          <ShayariSidebar 
             onCategoryChange={(category) => updateQueryParams(1, category)}
           />
         </div>

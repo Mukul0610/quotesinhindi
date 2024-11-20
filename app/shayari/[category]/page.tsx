@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import HomeContent from '@/components/HomeContent';
 import ShayariContent from '@/components/ShayariContent';
 
 // Define the type for the params
