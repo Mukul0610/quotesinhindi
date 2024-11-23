@@ -52,7 +52,7 @@ export default function ShayariList({ currentPage, category, onPageChange }: Quo
       
       <div className="grid gap-6 mt-6 ml-6">
         <h2 className='text-3xl font-serif font-bold'>
-      {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Quotes In Hindi
+      {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Shayari
       </h2>
         {quotes.map((quote) => (
           // <Card key={quote._Id} className="hover:shadow-lg transition-shadow">

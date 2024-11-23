@@ -27,47 +27,9 @@ export default function CategoriesSidebar({ onCategoryChange }: { onCategoryChan
   ];
 
   return (
-    // <Card className="sticky top-4">
-    //   <CardHeader>
-    //     <CardTitle>श्रेणियां</CardTitle>
-    //   </CardHeader>
-    //   <CardContent>
-    //     <div className="space-y-2">
-    //       {categories.map((category) => (
-    //         <button
-    //           key={category.id}
-    //           onClick={() => onCategoryChange(category.id)}
-    //           className={`w-full text-left px-4 py-2 rounded-lg transition-colors ${
-    //             currentCategory === category.id
-    //               ? 'bg-primary text-primary-foreground'
-    //               : 'hover:bg-gray-100'
-    //           }`}
-    //         >
-    //           <div className="flex justify-between items-center">
-    //             <span>{category.name}</span>
-    //             <span className="text-sm bg-gray-100 px-2 py-1 rounded-full">
-    //               {category.count}
-    //             </span>
-    //           </div>
-    //         </button>
-    //       ))}
-    //     </div>
-    //   </CardContent>
-    // </Card>
-    
     <div className="grid grid-cols-2 gap-4 text-blue-800">
           {categories.map((category) => (
             <Link href={`/${category.id}`} key={category.id} onClick={() => onCategoryChange(category.id)} className="no-underline">
-            {/* <div
-              key={category.id}
-              onClick={() => onCategoryChange(category.id)}
-              // className={`text-left px-4 py-2 rounded-lg transition-colors ${
-              //   currentCategory === category.id
-              //     ? 'bg-primary text-primary-foreground'
-              //     : 'hover:bg-gray-100'
-              // }`}
-              className="cursor-pointer"
-            > */}
               
                 <span>{category.name} ({category.english_name})</span>
                 <span className="text-sm bg-gray-100 px-2 py-1 rounded-full">
