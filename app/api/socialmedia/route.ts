@@ -2,7 +2,7 @@
 import { getSocial } from '@/lib/actions/socialMedia.action';
 import { NextResponse } from 'next/server';
 
-const QUOTES_PER_PAGE = 30;
+const QUOTES_PER_PAGE = 28;
 const CACHE_DURATION = 3600; // 1 hour in seconds
 
 // Updated Quote type with likes

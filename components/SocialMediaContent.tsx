@@ -20,11 +20,11 @@ export default function SocalMediaContent({ para }: { para: string }) {
     };
   
     return (
-      <main className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8 mr-6">
+      <main className="container mx-aut px-4 py-8">
+        <div className="flex flex-co lg:flex-row gap-8 mr-6">
           {/* Main Content Area (2/3) */}
           
-          <div className="lg:w-2/3">
+          <div className='w-full'>
             <SocialMedia
               currentPage={currentPage}
               category={currentCategory}
