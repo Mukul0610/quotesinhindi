@@ -49,12 +49,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 
-interface Category {
-  id: string;
-  english_name: string;
-  name: string;
-  count: string;
-}
 
 interface CategoriesSidebarProps {
   onCategoryChange: (id: string) => void;
@@ -130,7 +124,7 @@ export default function CategoriesSidebar({ onCategoryChange }: CategoriesSideba
       {/* No Results Message */}
       {filteredCategories.length === 0 && (
         <div className="text-center py-8 text-gray-500">
-          No categories found matching "{searchTerm}"
+          No categories found matching {searchTerm}
         </div>
       )}
     </div>

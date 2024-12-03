@@ -178,7 +178,7 @@ const Footer = () => {
                     <Input
                       type="email"
                       value={email}
-                      onChange={(e:any) => setEmail(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       className="pl-10 bg-white/90 border-[#4b281e] text-[#4b281e] placeholder:text-gray-500"
                       required

@@ -110,7 +110,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Copy, Heart, Share2 } from 'lucide-react';
+import { Copy, Heart} from 'lucide-react';
 
 interface QuotesListProps {
   currentPage: number;

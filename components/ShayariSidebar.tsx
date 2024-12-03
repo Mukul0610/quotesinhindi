@@ -37,12 +37,6 @@ import React, { useState } from 'react';
 import Link from "next/link";
 import { Search } from 'lucide-react';
 
-interface Category {
-  id: string;
-  english_name: string;
-  name: string;
-  count: string;
-}
 
 interface ShayariSidebarProps {
   onCategoryChange: (id: string) => void;
