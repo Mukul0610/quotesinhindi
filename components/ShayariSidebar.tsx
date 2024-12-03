@@ -100,7 +100,7 @@ export default function ShayariSidebar({ onCategoryChange }: ShayariSidebarProps
       {/* No Results Message */}
       {filteredCategories.length === 0 && (
         <div className="text-center py-8 text-gray-500">
-          No shayari categories found matching "{searchTerm}"
+          No shayari categories found matching {searchTerm}
         </div>
       )}
     </div>
