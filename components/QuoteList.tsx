@@ -180,7 +180,7 @@ const QuotesList = ({ currentPage, category, onPageChange }: QuotesListProps) =>
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <h2 className="text-4xl font-serif font-bold mb-8 text-[#4b281e]">
-        {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} प्रेरक विचार
+        {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Quotes In Hindi
       </h2>
 
       <div className="space-y-8">
