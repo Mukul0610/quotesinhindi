@@ -23,3 +23,5 @@ export async function getHead(category: string,page:string) {
       handleError(error);
     }
   }
+
+  
