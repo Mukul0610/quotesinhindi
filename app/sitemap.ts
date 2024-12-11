@@ -172,3 +172,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ];
 }
+
+// Ensure static generation
+export const dynamic = 'force-static';
+export const revalidate = false;
