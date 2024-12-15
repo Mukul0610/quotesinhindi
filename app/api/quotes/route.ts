@@ -22,16 +22,41 @@ let quotesCache: {
 } | null = null;
 
 // Helper function to get cached quotes
+// async function getCachedQuotes() {
+//   const currentTime = Date.now();
+  
+//   if (quotesCache && (currentTime - quotesCache.timestamp) / 1000 < CACHE_DURATION) {
+//     return quotesCache.data;
+//   }
+
+//   const freshQuotes = await getQuotes();
+  
+//   // Sort quotes by likes in descending order when updating cache
+//   const sortedQuotes = freshQuotes.sort((a:Quote, b:Quote) => (b.likes || 0) - (a.likes || 0));
+  
+//   quotesCache = {
+//     data: sortedQuotes,
+//     timestamp: currentTime
+//   };
+  
+//   return sortedQuotes;
+// }
+// Modify your getCachedQuotes function
 async function getCachedQuotes() {
   const currentTime = Date.now();
   
+  // For static first page, always return fresh data during build
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    const freshQuotes = await getQuotes();
+    return freshQuotes.sort((a:Quote, b:Quote) => (b.likes || 0) - (a.likes || 0));
+  }
+  
+  // For runtime, use cache
   if (quotesCache && (currentTime - quotesCache.timestamp) / 1000 < CACHE_DURATION) {
     return quotesCache.data;
   }
-
-  const freshQuotes = await getQuotes();
   
-  // Sort quotes by likes in descending order when updating cache
+  const freshQuotes = await getQuotes();
   const sortedQuotes = freshQuotes.sort((a:Quote, b:Quote) => (b.likes || 0) - (a.likes || 0));
   
   quotesCache = {
