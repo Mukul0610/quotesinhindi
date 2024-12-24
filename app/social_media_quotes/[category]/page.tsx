@@ -35,6 +35,20 @@ interface Quote {
   likes: number;
 }
 
+interface PageParams {
+  category: string;
+}
+
+interface PageSearchParams {
+  page?: string;
+}
+
+interface Props {
+  params: Promise<PageParams>;
+  searchParams: Promise<PageSearchParams>;
+}
+
+
 async function getQuotes(page: number, category: string) {
   try {
     const response = await fetch(
@@ -49,15 +63,16 @@ async function getQuotes(page: number, category: string) {
   }
 }
 
-export default async function Pages({
-  searchParams,
+export default async function Pages({ 
   params,
-}: {
-  searchParams: { page?: string };
-  params: { category: string };
-}) {
-  const currentPage = Number(searchParams.page) || 1;
-  const category = params.category || 'all';
+  searchParams 
+}: Props) {
+  const [{ category }, resolvedSearchParams] = await Promise.all([
+    params,
+    searchParams
+  ]);
+  
+  const currentPage = Number(resolvedSearchParams.page) || 1;
   const firstWordCategory = category.split('-')[0];
   
   const { quotes, totalPages } = await getQuotes(currentPage, firstWordCategory);
@@ -65,7 +80,7 @@ export default async function Pages({
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-serif font-bold mb-8 text-gray-900">
-        {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Quotes In Hindi
+       Social Media Quotes In Hindi
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -137,7 +152,7 @@ export default async function Pages({
       </div>
 
       <div className="flex justify-center gap-4 mt-12">
-        <a href={`/social_media_quotes?page=${currentPage - 1}`}>
+        <a href={`/social_media_quotes/all?page=${currentPage - 1}`}>
           <Button
             variant="outline"
             disabled={currentPage === 1}
@@ -151,7 +166,7 @@ export default async function Pages({
           पृष्ठ {currentPage} / {totalPages}
         </div>
 
-        <a href={`/social_media_quotes?page=${currentPage + 1}`}>
+        <a href={`/social_media_quotes/all?page=${currentPage + 1}`}>
           <Button
             variant="outline"
             disabled={currentPage === totalPages}
