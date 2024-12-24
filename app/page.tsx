@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+
 import QuoteFirstPage from '@/components/QuoteFirstPage';
 import CategoriesSidebar from '@/components/CategoriesSidebar/CategorySidebar';
 

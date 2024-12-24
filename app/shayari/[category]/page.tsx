@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ShayariContent from '@/components/ShayariContent';
 import { Metadata } from 'next'
 import { getHead } from '@/lib/actions/head.action';
-import { getAllShayariCategories } from '@/constants/shayariCategories';
+// import { getAllShayariCategories } from '@/constants/shayariCategories';
 // Define the type for the params
 type Params = Promise<{ category: string }>;
 

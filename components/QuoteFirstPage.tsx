@@ -20,7 +20,7 @@ interface Quote {
 }
 
 
-const QuoteFirstPage = () => {const router = useRouter();
+const QuoteFirstPage = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const handleCopy = async (quote: Quote) => {
