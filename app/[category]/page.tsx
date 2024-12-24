@@ -38,7 +38,7 @@
 import { Metadata } from 'next';
 import { getHead } from '@/lib/actions/head.action';
 import {QuotesList} from '@/components/QuoteList';
-import CategoriesSidebar from '@/components/CategoriesSidebar';
+import CategoriesSidebar from '@/components/CategoriesSidebar/CategorySidebar';
 
 interface PageProps {
   params: { category: string };

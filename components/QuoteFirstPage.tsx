@@ -1,86 +1,110 @@
 'use client';
-import React from 'react'
-import CategoriesSidebar from './CategoriesSidebar'
+
+import { useState } from 'react';
+// import QuoteFirstPage from '@/components/QuoteFirstPage';
 import { useRouter } from 'next/dist/client/components/navigation';
-import { Quotes } from '@/constants/quotes';
+import { quotes } from '@/constants/quotes';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Copy, ThumbsUp } from 'lucide-react';
 import Link from 'next/link';
 
+interface Quote {
+  _id: string;
+  quote: string;
+  author: string;
+  category: string[];
+  hindi_quote: string;
+  author_hindi: string;
+  likes: number;
+}
 
-const QuoteFirstPage = () => {
-    const router = useRouter();
-    const updateQueryParams = (page: number, category: string) => {
-        const params = new URLSearchParams();
-        params.set('page', page.toString());
-        router.push(`/${category}/?${params.toString()}`);
-      };
+
+const QuoteFirstPage = () => {const router = useRouter();
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopy = async (quote: Quote) => {
+    try {
+      await navigator.clipboard.writeText(quote.hindi_quote);
+      setCopiedId(quote._id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+
+  
   return (
-    
-      <main className="container mx-auto px-4 py-8">
-      <div className="flex flex-col lg:flex-row gap-8 mr-6">
-        {/* Main Content Area (2/3) */}
-        <div className="lg:w-2/3">
-        <div className="grid gap-6 mt-6 ml-6">
-        <h2 className='text-3xl font-serif font-bold'>
-          Quotes In Hindi
-        </h2>
-        {Quotes.map((quote) => (
-          // <Card key={quote._Id} className="hover:shadow-lg transition-shadow">
-          //   <CardContent className="p-4">
-          //     <p className="text-lg font-medium">{quote.hindi_quote}</p>
-          //     <p className="text-sm text-gray-500 mt-2">{quote.category}</p>
-          //   </CardContent>
-          // </Card>
-          <div key={quote._id} className="flex">
-            <div className='md:flex w-full border-b-2 pb-10 border-[#c4a99b] gap-4'>
-              <blockquote className="flex-3 md:w-[75%] p-4">
-                <p className="text-xl font-medium">{quote.hindi_quote}</p>
-                <footer className="text-lg text-gray-500 mt-6">―{quote.author_hindi}</footer>
-              </blockquote>
-              <div className="flex-1 flex items-center justify-center">
-                <button
-                  onClick={() => navigator.clipboard.writeText(quote.hindi_quote)}
-                  className="bg-[#4b281e] hover:bg-[#2c221f] text-white font-bold py-2 px-4 rounded"
+    <div className="space-y-8">
+      {quotes.map((quote) => (
+        <Card 
+          key={quote._id}
+          className="hover:shadow-xl transition-all duration-300 border-[#c4a99b]"
+        >
+          <CardContent className="p-6">
+            <div className="md:flex gap-6 items-start">
+              <div className="flex-1">
+                <blockquote className="text-xl font-medium leading-relaxed mb-4">
+                  {quote.hindi_quote}
+                </blockquote>
+                <footer className="text-lg text-gray-600">
+                  ― {quote.author_hindi}
+                </footer>
+              </div>
+              
+              <div className="mt-4 md:mt-0 flex flex-col gap-2">
+                  <Button
+                  onClick={() => handleCopy(quote)}
+                  className="flex items-center gap-2 bg-[#4b281e] hover:bg-[#2c221f]"
                 >
-                  कॉपी करें
-                </button>
-
+                  <Copy size={16} />
+                  {copiedId === quote._id ? 'कॉपी हो गया!' : 'कॉपी करें'}
+                </Button>
+                
+                <Button 
+                  variant="outline"
+                  className="flex items-center gap-2 border-[#4b281e] text-[#4b281e] hover:bg-[#4b281e] hover:text-white"
+                >
+                  <ThumbsUp size={16} />
+                  {quote.likes}
+                </Button>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center gap-2 mt-8">
-        <button
-        >
-          पिछला
-        </button>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {quote.category.map((cat) => (
+                <span
+                  key={cat}
+                  className="px-3 py-1 rounded-full text-sm bg-[#f5efe9] text-[#4b281e]"
+                >
+                  {cat}
+                </span>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      ))}
 
-        <span className="flex items-center px-4">
-          पृष्ठ 1/ 200
-        </span>
-
-        <button
-        >
+      <div className="flex justify-center items-center gap-4 mt-12">
+        <Button
           
-          <Link href="/all">
-          अगला
-          </Link>
-        </button>
+        >
+          पिछला पृष्ठ
+        </Button>
+
+        <span className="text-lg font-medium">
+          पृष्ठ {1} / {294}
+        </span>
+        <Link href="/all">
+        <Button
+        >
+          अगला पृष्ठ
+         
+        </Button>
+        </Link>
       </div>
-        </div>
-        
-        {/* Sidebar (1/3) */}
-        <div className="lg:w-1/3 ml-8">
-          <CategoriesSidebar 
-            onCategoryChange={(category) => updateQueryParams(1, category)}
-          />
-        </div>
-      </div>
-    </main>
-    
-  )
+    </div>
+  );
 }
 
 export default QuoteFirstPage
