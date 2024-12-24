@@ -46,7 +46,7 @@ const Navbar = () => {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/shayari', label: 'Shayari' },
-    { href: '/social_media_quotes', label: '2-Lines-Quote' },
+    { href: '/social_media_quotes/all', label: '2-Lines-Quote' },
     { href: '#', label: 'Blogs' }
   ];
 
