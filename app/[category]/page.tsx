@@ -73,13 +73,14 @@ async function getQuotes(page: number, category: string) {
   return response.json();
 }
 
-export default async function CategoryPage(props: PageProps) {
-  const [{ category = 'all' }, { page: pageParam }] = await Promise.all([
-    props.params,
-    props.searchParams
-  ]);
-
-  const currentPage = Number(pageParam) || 1;
+export default async function CategoryPage({ 
+  params,
+  searchParams,
+}: PageProps) {
+  const {page}= await searchParams;
+  const currentPage = Number(page) || 1;
+  // const category = params.category;
+  const {category} = await params;
   const firstWordCategory = category.split('-')[0];
 
   
