@@ -7,25 +7,6 @@ import { getAllShayariCategories } from '@/constants/shayariCategories';
 type Params = Promise<{ category: string }>;
 
 // Static Params Generation
-export async function generateStaticParams() {
-  try {
-    // Fetch all possible categories from your data source
-    const categories = getAllShayariCategories();
-    
-    // Add 'all' as a default category if not already present
-    if (!categories.includes('all')) {
-      categories.push('all');
-    }
-
-    // Map categories to the format Next.js expects
-    return categories.map((category) => ({
-      category: category
-    }));
-  } catch (error) {
-    console.error('Error generating static params:', error);
-    return [{ category: 'all' }]; // Fallback to 'all' category
-  }
-}
 
 
 

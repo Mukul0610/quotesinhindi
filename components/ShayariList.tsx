@@ -151,6 +151,7 @@ const ShayariList = ({ currentPage, category, onPageChange }: QuotesListProps) =
 
     fetchQuotes();
   }, [currentPage, category]);
+  
 
   const handleCopy = async (quote: Quote) => {
     try {
