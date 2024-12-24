@@ -40,17 +40,17 @@ import { getHead } from '@/lib/actions/head.action';
 import {QuotesList} from '@/components/QuoteList';
 import CategoriesSidebar from '@/components/CategoriesSidebar/CategorySidebar';
 
-interface PageProps {
-  params: { category: string };
-  searchParams: { page?: string };
+type Props = {
+  params: Promise<{ category: string }>;
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export async function generateMetadata(
-  { params }: PageProps
+  { params }: { params: Promise<{ category: string }> }
 ): Promise<Metadata> {
-  const {category} = params;
-  const newcategory = category || "all";
-  const data = await getHead(newcategory, "quote");
+  const { category } = await params;
+  const resolvedCategory = category || "all";
+  const data = await getHead(resolvedCategory, "quote");
   const head = data[0];
   
   return {
@@ -72,10 +72,7 @@ async function getQuotes(page: number, category: string) {
   return response.json();
 }
 
-export default async function CategoryPage({ 
-  params,
-  searchParams,
-}: PageProps) {
+export default async function CategoryPage({ params, searchParams }: Props)  {
   const {page}= await searchParams;
   const currentPage = Number(page) || 1;
   // const category = params.category;
