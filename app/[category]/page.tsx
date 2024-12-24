@@ -46,11 +46,11 @@ interface PageProps {
 }
 
 export async function generateMetadata(
-  { params }: { params: Promise<{ category: string }> }
+  { params }: PageProps
 ): Promise<Metadata> {
-  const resolvedParams = await params;
-  const category = resolvedParams.category || "all";
-  const data = await getHead(category, "quote");
+  const {category} = params;
+  const newcategory = category || "all";
+  const data = await getHead(newcategory, "quote");
   const head = data[0];
   
   return {
@@ -59,7 +59,6 @@ export async function generateMetadata(
     keywords: head?.keywords.join(', '),
   };
 }
-
 async function getQuotes(page: number, category: string) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/quotes?page=${page}&category=${category}`,
