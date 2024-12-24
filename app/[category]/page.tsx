@@ -40,13 +40,21 @@ import { getHead } from '@/lib/actions/head.action';
 import {QuotesList} from '@/components/QuoteList';
 import CategoriesSidebar from '@/components/CategoriesSidebar/CategorySidebar';
 
-type Props = {
-  params: Promise<{ category: string }>;
-  searchParams: { [key: string]: string | string[] | undefined };
+interface PageParams {
+  category: string;
+}
+
+interface PageSearchParams {
+  page?: string;
+}
+
+interface Props {
+  params: Promise<PageParams>;
+  searchParams: Promise<PageSearchParams>;
 }
 
 export async function generateMetadata(
-  { params }: { params: Promise<{ category: string }> }
+  { params }: { params: Promise<PageParams> }
 ): Promise<Metadata> {
   const { category } = await params;
   const resolvedCategory = category || "all";
@@ -72,11 +80,16 @@ async function getQuotes(page: number, category: string) {
   return response.json();
 }
 
-export default async function CategoryPage({ params, searchParams }: Props)  {
-  const {page}= await searchParams;
-  const currentPage = Number(page) || 1;
-  // const category = params.category;
-  const {category} = await params;
+export default async function CategoryPage({ 
+  params,
+  searchParams 
+}: Props) {
+  const [{ category }, resolvedSearchParams] = await Promise.all([
+    params,
+    searchParams
+  ]);
+  
+  const currentPage = Number(resolvedSearchParams.page) || 1;
   const firstWordCategory = category.split('-')[0];
 
   
