@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 // import QuoteFirstPage from '@/components/QuoteFirstPage';
-import { useRouter } from 'next/dist/client/components/navigation';
+// import { useRouter } from 'next/dist/client/components/navigation';
 import { quotes } from '@/constants/quotes';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
