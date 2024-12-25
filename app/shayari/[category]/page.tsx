@@ -1,71 +1,89 @@
-import React, { Suspense } from 'react';
-import ShayariContent from '@/components/ShayariContent';
-import { Metadata } from 'next'
+
+import { Metadata } from 'next';
 import { getHead } from '@/lib/actions/head.action';
-// import { getAllShayariCategories } from '@/constants/shayariCategories';
-// Define the type for the params
-type Params = Promise<{ category: string }>;
-
-// Static Params Generation
 
 
+import { ShayariList } from '@/components/ShayariList';
+import ShayariSidebar from '@/components/CategoriesSidebar/ShayariSidebar';
 
-export async function generateMetadata(
-  { params }: { params: Params },
-): Promise<Metadata> {
-  // read route params
-  // const category = (await params).category || "all";
-  const resolvedParams = await params;
-  const category = resolvedParams.category || "all";
-  
-
-  // fetch data
-   
-  const data = await getHead(category,"shayari" )
-  
-  const head = data[0]
-
-  try{
-  return {
-    title: `${head?.title}`,
-    description: head?.description,
-    keywords: head?.keywords.join(', '),
-    // You can add more metadata properties here
-    // openGraph: {
-    //   title: `${head?.title}`,
-    //   description: head?.description,
-    // },
-    // // Optional: Add Twitter metadata
-    // twitter: {
-    //   card: 'summary_large_image',
-    //   title: `${totalPages * 30} + ${head?.title}`,
-    //   description: head?.description,
-    // }
-  }}
-  catch (error) {
-    console.error('Error generating metadata:', error);
-    return {
-      title: `${category} Category`,
-      description: `Content for ${category}`
-    };
-  }
+interface PageParams {
+  category: string;
 }
 
-const Pages = async ({ params }: { params: Params }) => {
-  // Await the params to ensure they are resolved before accessing
-  // const currentCategory = await params.category || 'all';
-  const { category }=await params;
-  const currentCategory = category || 'all';
-  return (
-    <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ShayariContent para={currentCategory} />
-      </Suspense>
-    </>
+interface PageSearchParams {
+  page?: string;
+}
+
+interface Props {
+  params: Promise<PageParams>;
+  searchParams: Promise<PageSearchParams>;
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<PageParams> }
+): Promise<Metadata> {
+  const { category } = await params;
+  const resolvedCategory = category || "all";
+  const data = await getHead(resolvedCategory, "quote");
+  const head = data[0];
+  
+  return {
+    title: head?.title,
+    description: head?.description,
+    keywords: head?.keywords.join(', '),
+  };
+}
+async function getQuotes(page: number, category: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/shayari?page=${page}&category=${category}`,
+    { cache: 'no-store' }
   );
-};
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch quotes');
+  }
+  
+  return response.json();
+}
 
-export default Pages;
+export default async function CategoryPage({ 
+  params,
+  searchParams 
+}: Props) {
+  const [{ category }, resolvedSearchParams] = await Promise.all([
+    params,
+    searchParams
+  ]);
+  
+  const currentPage = Number(resolvedSearchParams.page) || 1;
+  const firstWordCategory = category.split('-')[0];
 
-export const dynamicParams = false; // Prevent generation of pages not defined in generateStaticParams
-export const revalidate = 3600; // Optional: Regenerate pages every hour
+  
+  const { quotes, totalPages } = await getQuotes(currentPage, firstWordCategory);
+  
+
+  return (
+    <main className="container mx-auto px-4 py-8">
+      <div className="flex flex-col lg:flex-row gap-8 mr-6">
+        {/* Main Content Area (2/3) */}
+        <div className="lg:w-2/3">
+          <h2 className="text-4xl font-serif font-bold mb-8 text-[#4b281e]">
+            {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Quotes In Hindi
+          </h2>
+
+          <ShayariList 
+            quotes={quotes}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            category={category}
+          />
+        </div>
+        
+        {/* Sidebar (1/3) */}
+        <div className="lg:w-1/3 ml-8">
+        <ShayariSidebar />
+        </div>
+      </div>
+    </main>
+  );
+}

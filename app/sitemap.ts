@@ -169,6 +169,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date('2024-11-24T07:52:48+00:00'),
       changeFrequency: 'monthly',
       priority: 0.90,
+    },
+    {
+      url: 'https://www.purevichar.in/social_media_quotes/all',
+      lastModified: new Date('2024-12-24T07:52:48+00:00'),
+      changeFrequency: 'monthly',
+      priority: 0.90,
     }
   ];
 }
