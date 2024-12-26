@@ -31,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
     <head>
     <meta name="p:domain_verify" content="8c2fc0c02cd41d55426a95764aa392bf"/>
+    <meta name="msvalidate.01" content="E049F255AEE662738072C8F1538BA6FF" />
     </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center justify-center`}
