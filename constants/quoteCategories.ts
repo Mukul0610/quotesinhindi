@@ -17,6 +17,7 @@ export const categories = [
     { id: 'spirituality-quotes-hindi', english_name: "spirituality", name: 'आध्यात्मिकता', count: 5500 },
     { id: 'time-quotes-hindi', english_name: "time", name: 'समय', count: 6000 },
     { id: 'you-quotes-hindi', english_name: "you", name: 'आप', count: 5400 },
+    { id: 'bhagavad-gita-quotes-hindi', english_name: "bhagavad gita", name: 'भागवद गीता', count: 20 },
   ];
 
 
