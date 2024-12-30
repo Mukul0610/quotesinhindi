@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Copy, ThumbsUp } from 'lucide-react';
+import Link from 'next/link';
 
 interface Quote {
   _id: string;
@@ -80,12 +81,12 @@ export function QuotesList({ quotes, currentPage, totalPages, category }: Quotes
 
             <div className="mt-4 flex flex-wrap gap-2">
               {quote.category.map((cat) => (
-                <span
+                <Link href={`/${cat}-quote-hind`}
                   key={cat}
                   className="px-3 py-1 rounded-full text-sm bg-[#f5efe9] text-[#4b281e]"
                 >
                   {cat}
-                </span>
+                </Link>
               ))}
             </div>
           </CardContent>
