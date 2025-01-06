@@ -1,5 +1,6 @@
 import { categories } from "@/constants/quoteCategories";
 import { CategorySearch } from './CategorySearch';
+import { submitToIndexNow } from '@/lib/actions/indexNow'
 
 export default function CategoriesSidebar() {
   return (
@@ -8,3 +9,7 @@ export default function CategoriesSidebar() {
     </div>
   );
 }
+
+const result = await submitToIndexNow([
+  ...categories.map(category => `https://yourdomain.com/${category.id}`)
+], process.env.INDEXNOW_KEY);
