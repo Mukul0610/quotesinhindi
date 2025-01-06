@@ -10,6 +10,10 @@ export default function CategoriesSidebar() {
   );
 }
 
-const result = await submitToIndexNow([
+if (!process.env.INDEXNOW_KEY) {
+  throw new Error('INDEXNOW_KEY is not defined in environment variables');
+}
+
+await submitToIndexNow([
   ...categories.map(category => `https://yourdomain.com/${category.id}`)
 ], process.env.INDEXNOW_KEY);

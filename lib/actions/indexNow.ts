@@ -1,5 +1,5 @@
-export const submitToIndexNow = async (urls:any, key:any) => {
-    const API_ENDPOINT = `https://api.indexnow.org/indexnow`;
+export const submitToIndexNow = async (urls: string | string[], key: string) => {
+    const API_ENDPOINT = `https://www.bing.com/indexnow`;
     
     try {
       const response = await fetch(API_ENDPOINT, {
