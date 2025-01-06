@@ -31,6 +31,9 @@ export async function generateMetadata(
     title: head?.title,
     description: head?.description,
     keywords: head?.keywords.join(', '),
+    alternates: {
+      canonical: `https://purevichar.in/shayari/${category}`
+    }
   };
 }
 async function getQuotes(page: number, category: string) {
