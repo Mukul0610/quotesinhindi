@@ -5,7 +5,7 @@ import { submitToIndexNow } from "@/lib/actions/indexNow";
 import { NextResponse } from "next/server";
 import { categories } from "@/constants/quoteCategories";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     if (!process.env.INDEXNOW_KEY) {
       throw new Error('INDEXNOW_KEY is not defined in environment variables');
