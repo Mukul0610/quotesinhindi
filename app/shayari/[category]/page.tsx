@@ -24,7 +24,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { category } = await params;
   const resolvedCategory = category || "all";
-  const data = await getHead(resolvedCategory, "quote");
+  const data = await getHead(resolvedCategory, "shayari");
   const head = data[0];
   
   return {
