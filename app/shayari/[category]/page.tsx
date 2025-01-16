@@ -71,7 +71,7 @@ export default async function CategoryPage({
         {/* Main Content Area (2/3) */}
         <div className="lg:w-2/3">
           <h2 className="text-4xl font-serif font-bold mb-8 text-[#4b281e]">
-            {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Quotes In Hindi
+            {firstWordCategory.charAt(0).toUpperCase() + firstWordCategory.slice(1)} Shayari In Hindi
           </h2>
 
           <ShayariList 

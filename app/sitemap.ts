@@ -182,6 +182,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date('2024-12-24T07:52:48+00:00'),
       changeFrequency: 'monthly',
       priority: 0.98,
+    },
+    {
+      url: 'https://www.purevichar.in/shayari/motivational-shayari-hindi/',
+      lastModified: new Date('2025-01-14T07:52:48+00:00'),
+      changeFrequency: 'monthly',
+      priority: 0.98,
     }
   ];
 }
