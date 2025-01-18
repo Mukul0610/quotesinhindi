@@ -19,7 +19,18 @@ export const metadata: Metadata = {
   title: "Quotes and Shayari in Hindi",
   description: "Discover a treasure trove of heartfelt Hindi Shayari and Quotes on love, life, motivation,poetry,politics and philosophy. Daily updated collection featuring inspirational thoughts, good morning messages, sad shayari, and timeless wisdom in Hindi. Explore 10,000+ handpicked quotes across emotions, share with loved ones, and find words that touch your soul. Your daily destination for shayari in hindi and meaningful quotes. Visit now for fresh content daily!",
   keywords: "quotes in hindi,Love Quotes in Hindi,shayari in hindi",
-  
+  openGraph: {
+    title: 'Quotes and Shayari in Hindi',
+    description: "Discover a treasure trove of heartfelt Hindi Shayari and Quotes on love, life, motivation,poetry,politics and philosophy. Daily updated collection featuring inspirational thoughts, good morning messages, sad shayari, and timeless wisdom in Hindi. Explore 10,000+ handpicked quotes across emotions, share with loved ones, and find words that touch your soul. Your daily destination for shayari in hindi and meaningful quotes. Visit now for fresh content daily!",
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dtezihsb8/image/upload/v1737181044/Untitled_design_a3fy2f.png',
+        width: 800,
+        height: 600,
+        alt: 'Og Image Alt',
+      },
+    ],
+  }
 };
 
 export default function RootLayout({

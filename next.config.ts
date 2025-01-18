@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone", // Enable static export
   
+    
+  
+  
   // If you have dynamic routes, configure them
   trailingSlash: true,
   experimental: {
@@ -13,7 +16,11 @@ const nextConfig: NextConfig = {
   
   // Handle images if using next/image
   images: {
-    unoptimized: true
+    unoptimized: true,
+    domains: [
+      "res.cloudinary.com",
+      
+    ],
   },
 };
 

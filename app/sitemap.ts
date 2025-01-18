@@ -188,6 +188,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date('2025-01-14T07:52:48+00:00'),
       changeFrequency: 'monthly',
       priority: 0.98,
+    },
+    {
+      url: 'https://www.purevichar.in/shayari/philosophy-shayari-hindi/',
+      lastModified: new Date('2025-01-14T07:52:48+00:00'),
+      changeFrequency: 'monthly',
+      priority: 0.98,
     }
   ];
 }
